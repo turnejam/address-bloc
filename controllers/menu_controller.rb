@@ -67,12 +67,13 @@ class MenuController
     selection = gets.to_i
     if selection == 0
       system "clear"
-    elsif !address_book.entries[selection-1].nil?
+    elsif address_book.entries[selection-1]
       system "clear"
       entry = address_book.entries[selection-1]
       puts entry.to_s
       entry_submenu(entry)
     else
+      system"clear"
       puts "No entry at #{selection} exists"
       view_by_index
     end
