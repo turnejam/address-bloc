@@ -9,23 +9,18 @@ class AddressBook
   end
   
   def add_entry(name, phone_number, email)
-    insertion_index = 0
-    entries.each do |entry|
-      if name < entry.name
-        insertion_index = entries.index(entry)
-        entries.insert(insertion_index, Entry.new(name, phone_number, email))
-      end
+    if !name || !phone_number || !email
+      puts "Invalid entry. Please enter a name, a phone number, and an email address."
+    else
+      insertion_index = entries.index {|entry| name < entry.name} || -1
+      entries.insert(insertion_index, Entry.new(name, phone_number, email))
     end
   end
   
   def remove_entry(name, phone_number, email)
-    index = 0
     entries.each do |entry|
       if name == entry.name && phone_number == entry.phone_number && email == entry.email
-        entries.delete_at(index)
-        return
-      else
-        index +=1
+        entries.remove(entry)
       end
     end
   end
