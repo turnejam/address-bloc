@@ -27,7 +27,6 @@ RSpec.describe AddressBook do
   describe "#add_entry" do
     it "adds only one entry to the address book" do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
-      
       expect(book.entries.size).to eq(1)
     end
     
@@ -39,13 +38,16 @@ RSpec.describe AddressBook do
       expect(new_entry.phone_number).to eq('010.012.1815')
       expect(new_entry.email).to eq('augusta.king@lovelace.com')
     end
+    
+    it "does not accept duplicate entries" do
+      book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
+    end
   end
-  
+
   describe "#import_from_1st_csv" do
     it "imports the correct number of entries" do
       book.import_from_csv("entries.csv")
-      book_size = book.entries.size
-      expect(book_size).to eq 5
+      expect(book.entries.size).to eq 5
     end
     
     it "imports the 1st entry" do

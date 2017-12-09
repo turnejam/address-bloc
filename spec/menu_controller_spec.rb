@@ -6,4 +6,12 @@ RSpec.describe MenuController do
       
     end
   end
+  
+  
 end
+
+#make sure everything you intended to write works as you intended
+#-try doing stuff that shouldn't work
+#negative testing
+#integration testing
+#
