@@ -14,8 +14,8 @@ class AddressBook
         return "Entry already exists"
       end
     end
-    if !name || !phone_number || !email
-      puts "Invalid entry. Please enter a name, a phone number, and an email address."
+    if name.length == 0  || phone_number.length == 0 || email.length == 0
+      return "Invalid entry. Please enter a name, a phone number, and an email address."
     else
       insertion_index = entries.index {|entry| name < entry.name} || -1
       entries.insert(insertion_index, Entry.new(name, phone_number, email))
@@ -31,6 +31,7 @@ class AddressBook
   end
   
   def demolish
+    entries.clear
   end
   
   def import_from_csv(file_name)
